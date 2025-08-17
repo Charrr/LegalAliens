@@ -1406,6 +1406,15 @@ MonoBehaviour:
   _btnAnswerOptionPrefab: {fileID: 1726174554727410537, guid: 721810609c0fc1f4f98f516baaaee183, type: 3}
   _tfSpawnParent: {fileID: 8721138766320038381}
   _txtQuestion: {fileID: 4371407423546089520}
+  DebugJson: "{\r\n  \"QuizzedObjectName\": \"Flower Pot\",\r\n  \"Quizzes\": [\r\n   
+    {\r\n      \"Question\": \"What color is the large flower in the middle of the
+    pot?\",\r\n      \"Options\": [\"Red\", \"Yellow\", \"Blue\", \"White\"],\r\n     
+    \"Answer\": \"Yellow\"\r\n    },\r\n    {\r\n      \"Question\": \"What type
+    of container holds the flowers?\",\r\n      \"Options\": [\"Glass jar\", \"Ceramic
+    pot\", \"Plastic cup\", \"Wooden box\"],\r\n      \"Answer\": \"Ceramic pot\"\r\n   
+    },\r\n    {\r\n      \"Question\": \"What kind of leaves are surrounding the
+    flowers?\",\r\n      \"Options\": [\"Ivy leaves\", \"Palm leaves\", \"Pine needles\",
+    \"Cactus leaves\"],\r\n      \"Answer\": \"Ivy leaves\"\r\n    }\r\n  ]\r\n}\r"
 --- !u!1001 &373542160440419145
 PrefabInstance:
   m_ObjectHideFlags: 0
