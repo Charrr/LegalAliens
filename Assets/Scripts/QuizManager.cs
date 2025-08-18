@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,10 @@ namespace LegalAliens
         private QuizData _currentQuizData;
         private int _currentQuizIndex;
 
+        public string CurrentQuizAnswer => _currentQuizData.QuizQuestions[_currentQuizIndex].Answer;
+        public event Action<bool> OnAnswerChecked;
+        public event Action OnFinishQuiz;
+
         [ContextMenu("Prase Debug Json")]
         private void ParseDebugJson()
         {
@@ -37,10 +42,20 @@ namespace LegalAliens
         private void StartQuiz()
         {
             _currentQuizIndex = 0;
-            ShowQuizOnPanel(_currentQuizData.Quizzes[_currentQuizIndex]);
+            ShowQuizOnPanel(_currentQuizData.QuizQuestions[_currentQuizIndex]);
         }
 
-        private void ShowQuizOnPanel(Quiz quiz)
+        [ContextMenu("Go to Next Quiz")]
+        private void GoToNextQuestion()
+        {
+            if (_currentQuizIndex < _currentQuizData.QuizQuestions.Length)
+            {
+                _currentQuizIndex++;
+            }
+            ShowQuizOnPanel(_currentQuizData.QuizQuestions[_currentQuizIndex]);
+        }
+
+        private void ShowQuizOnPanel(QuizQuestion quiz)
         {
             SetQuestionText(quiz.Question);
             CreateOptions(quiz.Options);
@@ -48,7 +63,7 @@ namespace LegalAliens
 
         private void SetQuestionText(string text)
         {
-            _txtQuestion.text = text;
+            _txtQuestion.text = (_currentQuizIndex + 1) + ". " + text;
         }
 
         private void CreateOptions(string[] options)
@@ -69,7 +84,30 @@ namespace LegalAliens
             Button btn = Instantiate(_btnAnswerOptionPrefab, _tfSpawnParent);
             btn.name = "Btn_Option: " + text;
             btn.GetComponentInChildren<TMP_Text>().text = text;
+            btn.onClick.AddListener(() => HandleSelectOption(text));
             return btn;
+        }
+
+        private void HandleSelectOption(string option)
+        {
+            bool result = option == CurrentQuizAnswer;
+            Debug.Log($"Option selected: {option}. Correct Answer: {CurrentQuizAnswer}.");
+            OnAnswerChecked?.Invoke(result);
+            StartCoroutine(PresentQuizQuestionResult(result));
+        }
+
+        private IEnumerator PresentQuizQuestionResult(bool isCorrect)
+        {
+            // Animations, sound effects, etc.
+            yield return new WaitForSeconds(3f);
+            if (_currentQuizIndex >= _currentQuizData.QuizQuestions.Length - 1)
+            {
+                OnFinishQuiz?.Invoke();
+            }
+            else
+            {
+                GoToNextQuestion();
+            }
         }
     }
 
@@ -77,11 +115,11 @@ namespace LegalAliens
     public class QuizData
     {
         public string QuizzedObjectName;
-        public Quiz[] Quizzes;
+        public QuizQuestion[] QuizQuestions;
     }
 
     [Serializable]
-    public class Quiz
+    public class QuizQuestion
     {
         public string Question;
         public string[] Options;
