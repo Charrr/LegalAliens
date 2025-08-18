@@ -13,7 +13,7 @@ namespace LegalAliens
         [SerializeField] private Button _btnAnswerOptionPrefab;
 
         [Header("Object References")]
-        [SerializeField] private Transform _tfSpawnParent;
+        [SerializeField] private Transform _tfOptionsSpawnParent;
         [SerializeField] private TMP_Text _txtQuestion;
         [SerializeField] private HeartCounter _heartCounter;
         [SerializeField] private OpenAIManager _openAIManager;
@@ -105,7 +105,7 @@ namespace LegalAliens
 
         private void CreateOptions(string[] options)
         {
-            foreach (Transform child in _tfSpawnParent)
+            foreach (Transform child in _tfOptionsSpawnParent)
             {
                 Destroy(child.gameObject);
             }
@@ -118,7 +118,7 @@ namespace LegalAliens
 
         private Button CreateOptionButton(string text)
         {
-            Button btn = Instantiate(_btnAnswerOptionPrefab, _tfSpawnParent);
+            Button btn = Instantiate(_btnAnswerOptionPrefab, _tfOptionsSpawnParent);
             btn.name = "Btn_Option: " + text;
             btn.GetComponentInChildren<TMP_Text>().text = text;
             btn.onClick.AddListener(() => HandleSelectOption(text));

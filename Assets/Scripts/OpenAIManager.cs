@@ -19,6 +19,7 @@ namespace LegalAliens
         [SerializeField] private Texture2D _image;
         private string _apiKey;
 
+        public event Action OnRequestImagePrompt;
         public event Action<string> OnReceiveQuizJson;
 
         private void Awake()
@@ -45,6 +46,7 @@ namespace LegalAliens
         {
             //StartCoroutine(SendPromptWithImageCoroutine(_prompt, _image));
             PromptGenerateQuizBasedOnImage(_image);
+            OnRequestImagePrompt?.Invoke();
         }
 
         [ContextMenu("Send Text Prompt")]

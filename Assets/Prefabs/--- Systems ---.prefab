@@ -31,8 +31,59 @@ Transform:
   m_Children:
   - {fileID: 913023547246927695}
   - {fileID: 1204262772459823739}
+  - {fileID: 2455169758016248545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3521475021510973240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2455169758016248545}
+  - component: {fileID: 5735792855981016234}
+  m_Layer: 0
+  m_Name: QuizManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2455169758016248545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3521475021510973240}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5509530601440428813}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5735792855981016234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3521475021510973240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e5a9f46066fc54eb594503cf45be5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.QuizManager
+  _btnAnswerOptionPrefab: {fileID: 0}
+  _tfOptionsSpawnParent: {fileID: 0}
+  _txtQuestion: {fileID: 0}
+  _heartCounter: {fileID: 0}
+  _openAIManager: {fileID: 0}
+  DebugJson: 
 --- !u!1 &7278155388420919115
 GameObject:
   m_ObjectHideFlags: 0

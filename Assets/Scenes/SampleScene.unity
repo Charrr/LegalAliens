@@ -214,6 +214,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &272503836 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8721138766320038381, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+  m_PrefabInstance: {fileID: 5936374499462766051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +388,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9681af9ad041d3b4ba53fa5490d28d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.OpenAIManager
+--- !u!114 &544185495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4371407423546089520, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+  m_PrefabInstance: {fileID: 5936374499462766051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &667710735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1152,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1360825240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3810228088655180573, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+  m_PrefabInstance: {fileID: 5936374499462766051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63501ecb7c0ca3b4b87505412e3424a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.HeartCounter
 --- !u!1 &1453040718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,11 +1725,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5043613425608367017, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 1280
       objectReference: {fileID: 0}
     - target: {fileID: 5043613425608367017, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 5043613425608367017, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1768,10 +1795,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8206330258908034096, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
-      propertyPath: _openAIManager
-      value: 
-      objectReference: {fileID: 511663892}
+    - target: {fileID: 6132148755945920404, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589929048261623539, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589929048261623539, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589929048261623539, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589929048261623539, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955447931333825413, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+      propertyPath: _size.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955447931333825413, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+      propertyPath: _size.y
+      value: 720
+      objectReference: {fileID: 0}
     - target: {fileID: 8937122538966090632, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1788,6 +1839,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8980688847005443995, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+      propertyPath: _openAIManager
+      value: 
+      objectReference: {fileID: 511663892}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1845,6 +1900,39 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+      propertyPath: DebugJson
+      value: "{\r\n  \"QuizzedObjectName\": \"Flower Pot\",\r\n  \"QuizQuestions\":
+        [\r\n    {\r\n      \"Question\": \"What color is the large flower in the
+        middle of the pot?\",\r\n      \"Options\": [\"Red\", \"Yellow\", \"Blue\",
+        \"White\"],\r\n      \"Answer\": \"Yellow\"\r\n    },\r\n    {\r\n      \"Question\":
+        \"What type of container holds the flowers?\",\r\n      \"Options\": [\"Glass
+        jar\", \"Ceramic pot\", \"Plastic cup\", \"Wooden box\"],\r\n      \"Answer\":
+        \"Ceramic pot\"\r\n    },\r\n    {\r\n      \"Question\": \"What kind of
+        leaves are surrounding the flowers?\",\r\n      \"Options\": [\"Ivy leaves\",
+        \"Palm leaves\", \"Pine needles\", \"Cactus leaves\"],\r\n      \"Answer\":
+        \"Ivy leaves\"\r\n    }\r\n  ]\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+      propertyPath: _txtQuestion
+      value: 
+      objectReference: {fileID: 544185495}
+    - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+      propertyPath: _heartCounter
+      value: 
+      objectReference: {fileID: 1360825240}
+    - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+      propertyPath: _openAIManager
+      value: 
+      objectReference: {fileID: 511663892}
+    - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+      propertyPath: _tfOptionsSpawnParent
+      value: 
+      objectReference: {fileID: 272503836}
+    - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+      propertyPath: _btnAnswerOptionPrefab
+      value: 
+      objectReference: {fileID: 1726174554727410537, guid: 721810609c0fc1f4f98f516baaaee183, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
