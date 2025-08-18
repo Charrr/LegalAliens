@@ -28,12 +28,18 @@ namespace LegalAliens
         private void Start()
         {
             _dwaniAIManager.OnReceiveResponse += ProcessDwaniResponse;
-            _dwaniAIManager.SendRequest(_imgScreenshot.texture as Texture2D);
         }
 
         private void OnDestroy()
         {
             _dwaniAIManager.OnReceiveResponse -= ProcessDwaniResponse;
+        }
+
+        public void SetScreenshot(Texture2D screenshot)
+        {
+            _imgScreenshot.texture = screenshot;
+            _imgScreenshot.SetNativeSize(); // Adjust the RawImage size to match the screenshot
+            _dwaniAIManager.SendRequest(_imgScreenshot.texture as Texture2D);
         }
 
         private void ProcessDwaniResponse(string json)
