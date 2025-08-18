@@ -11,29 +11,32 @@ namespace LegalAliens
     public class DwaniAIManager : MonoBehaviour
     {
         [SerializeField] private string _serverUrl = "https://api.dwani.ai/detect/";
-        [SerializeField] private Texture2D _testImage;
+
+        public event Action OnSendRequest;
+        public event Action<string> OnReceiveResponse;
 
         [ContextMenu("Send Request")]
-        private void SendRequest()
+        public void SendRequest(Texture2D image)
         {
-            StartCoroutine(SendImageCoroutine());
+            StartCoroutine(SendImageCoroutine(image));
         }
 
-        private IEnumerator SendImageCoroutine()
+        private IEnumerator SendImageCoroutine(Texture2D image)
         {
-            if (_testImage == null)
+            if (image == null)
             {
                 Debug.LogError("No image assigned!");
                 yield break;
             }
 
-            Texture2D readableImage = Utility.EnsureReadable(_testImage);
+            Texture2D readableImage = Utility.EnsureReadable(image);
             // Encode to JPG
             byte[] jpgBytes = readableImage.EncodeToJPG();
 
             // Create form
             WWWForm form = new WWWForm();
-            form.AddBinaryData("image_file", jpgBytes, "test_image_living_room.jpg", "image/jpeg");
+            form.AddBinaryData("image_file", jpgBytes, image.name, "image/jpeg");
+            OnSendRequest?.Invoke();
 
             using (UnityWebRequest www = UnityWebRequest.Post(_serverUrl, form))
             {
@@ -44,32 +47,13 @@ namespace LegalAliens
                 if (www.result != UnityWebRequest.Result.Success)
                 {
                     Debug.LogError("Error: " + www.error);
-                    Debug.LogError(www.downloadHandler.text);
                 }
                 else
                 {
                     Debug.Log("Response: " + www.downloadHandler.text);
+                    OnReceiveResponse?.Invoke(www.downloadHandler.text);
                 }
             }
-        }
-    }
-
-    public class DwaniAIResponse
-    {
-
-        [Serializable]
-        public class Detection
-        {
-            public List<int> box; // The bounding box coordinates
-            public float confidence; // Confidence score
-            public int class_id; // Class ID
-            public string label; // Label of the detected object
-        }
-
-        [Serializable]
-        public class DetectionData
-        {
-            public List<Detection> detections; // List of detections
         }
     }
 }
