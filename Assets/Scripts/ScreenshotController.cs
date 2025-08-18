@@ -30,8 +30,12 @@ namespace LegalAliens
 
         public Texture2D CaptureScreenshot()
         {
-            //// Create a RenderTexture to capture the camera's view
-            //RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+            // Save the original culling mask
+            int originalMask = _screenshotCamera.cullingMask;
+
+            // Exclude the UI layer (layer 5)
+            _screenshotCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("UI"));
+
             _screenshotCamera.targetTexture = _renderTexture;
 
             // Render the camera's view to the RenderTexture
@@ -46,10 +50,10 @@ namespace LegalAliens
             // Reset the camera's target texture and RenderTexture
             _screenshotCamera.targetTexture = null;
             RenderTexture.active = null;
-            //Destroy(renderTexture);
 
-            // Save the screenshot as a PNG file
-            //byte[] screenshotBytes = screenshot.EncodeToJPG();
+            // Restore the original culling mask
+            _screenshotCamera.cullingMask = originalMask;
+
             return screenshot;
         }
 
