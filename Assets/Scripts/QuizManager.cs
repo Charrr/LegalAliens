@@ -16,6 +16,7 @@ namespace LegalAliens
         [SerializeField] private Transform _tfSpawnParent;
         [SerializeField] private TMP_Text _txtQuestion;
         [SerializeField] private HeartCounter _heartCounter;
+        [SerializeField] private OpenAIManager _openAIManager;
 
         [Header("Debug")]
         [TextArea(4, 30)] public string DebugJson;
@@ -30,25 +31,48 @@ namespace LegalAliens
         private void Awake()
         {
             if (!_heartCounter) _heartCounter = FindAnyObjectByType<HeartCounter>();
+            if (!_openAIManager) _openAIManager = FindAnyObjectByType<OpenAIManager>();
         }
 
         private void Start()
         {
+            _openAIManager.OnReceiveQuizJson += ProcessQuizDataJson;
             // TODO: Just for debug, to be refactoed.
-            ParseDebugJson();
-            StartQuiz();
+            //ParseDebugJson();
+            //StartQuiz();
+        }
+
+        private void OnDestroy()
+        {
+            _openAIManager.OnReceiveQuizJson -= ProcessQuizDataJson;
         }
 
         [ContextMenu("Prase Debug Json")]
         private void ParseDebugJson()
         {
-            ParseQuizDataJson(DebugJson);
+            ProcessQuizDataJson(DebugJson);
         }
 
-        private QuizData ParseQuizDataJson(string json)
+        private void ProcessQuizDataJson(string json)
         {
-            _currentQuizData = JsonConvert.DeserializeObject<QuizData>(json);
-            return _currentQuizData;
+            string refinedJson = RefineJsonObject(json);
+            Debug.Log($"Refined JSON: {refinedJson}");
+            _currentQuizData = JsonConvert.DeserializeObject<QuizData>(refinedJson);
+            StartQuiz();
+
+            static string RefineJsonObject(string json)
+            {
+                if (string.IsNullOrEmpty(json))
+                    return string.Empty;
+
+                int start = json.IndexOf('{');
+                int end = json.LastIndexOf('}');
+
+                if (start == -1 || end == -1 || end < start)
+                    return string.Empty;
+
+                return json.Substring(start, end - start + 1);
+            }
         }
 
         [ContextMenu("Start Quiz")]

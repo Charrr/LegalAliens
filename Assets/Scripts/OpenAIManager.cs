@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.IO;
 using System.Text;
 using UnityEngine;
@@ -16,6 +18,8 @@ namespace LegalAliens
 
         [SerializeField] private Texture2D _image;
         private string _apiKey;
+
+        public event Action<string> OnReceiveQuizJson;
 
         private void Awake()
         {
@@ -103,8 +107,11 @@ namespace LegalAliens
             }
             else
             {
-                Debug.Log("Full JSON:\n" + request.downloadHandler.text);
-                Debug.Log("Extracted output: " + OpenAIResponseParser.ExtractText(request.downloadHandler.text));
+                string fullJson = request.downloadHandler.text;
+                string extractedOutput = OpenAIResponseParser.ExtractText(request.downloadHandler.text);
+                Debug.Log("Full JSON:\n" + fullJson);
+                Debug.Log("Extracted output: " + extractedOutput);
+                OnReceiveQuizJson?.Invoke(extractedOutput);
             }
         }
 

@@ -372,6 +372,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 870217325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &511663892 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7253120351406362854, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+  m_PrefabInstance: {fileID: 8466257311400735078}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9681af9ad041d3b4ba53fa5490d28d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.OpenAIManager
 --- !u!1 &667710735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,6 +1768,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8206330258908034096, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+      propertyPath: _openAIManager
+      value: 
+      objectReference: {fileID: 511663892}
     - target: {fileID: 8937122538966090632, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1792,7 +1807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5509530601440428813, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.39872
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5509530601440428813, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1800,7 +1815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5509530601440428813, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.76779
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5509530601440428813, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
       propertyPath: m_LocalRotation.w
