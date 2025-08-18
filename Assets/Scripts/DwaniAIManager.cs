@@ -11,7 +11,8 @@ namespace LegalAliens
     public class DwaniAIManager : MonoBehaviour
     {
         [SerializeField] private string _serverUrl = "https://api.dwani.ai/detect/";
-
+        [SerializeField] private int _maxObject = 10;
+        [SerializeField] private float _minConfidence = 0.5f;
         public event Action OnSendRequest;
         public event Action<string> OnReceiveResponse;
 
@@ -38,6 +39,7 @@ namespace LegalAliens
             form.AddBinaryData("image_file", jpgBytes, image.name, "image/jpeg");
             OnSendRequest?.Invoke();
 
+            _serverUrl += "?top_k=" + _maxObject + "&confidence_threshold=" + _minConfidence.ToString("F2");
             using (UnityWebRequest www = UnityWebRequest.Post(_serverUrl, form))
             {
                 www.SetRequestHeader("accept", "application/json");

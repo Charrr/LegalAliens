@@ -51,7 +51,7 @@ namespace LegalAliens
 
             foreach (var detection in data.detections)
             {
-                Color col = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.5f, 1f, 0.3f, 0.3f); // Random color for bounding box
+                Color col = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.5f, 1f, 0.7f, 0.7f); // Random color for bounding box
                 TMP_Text txtLabel = Instantiate(_txtLabelPrefab, _imgScreenshot.transform);
                 txtLabel.color = col;
                 txtLabel.text = $"Txt_Label: {detection.label} ({detection.confidence * 100:F2}%)";
@@ -62,7 +62,7 @@ namespace LegalAliens
                 imgBoundingBox.color = col;
                 RectTransform rectTransform = imgBoundingBox.GetComponent<RectTransform>();
                 rectTransform.anchoredPosition = new Vector2(detection.box[0], -detection.box[1]);
-                rectTransform.sizeDelta = new Vector2(detection.box[2] - detection.box[0], detection.box[3] - detection.box[0]);
+                rectTransform.sizeDelta = new Vector2(detection.box[2] - detection.box[0], detection.box[3] - detection.box[1]);
             }
         }
     } 
