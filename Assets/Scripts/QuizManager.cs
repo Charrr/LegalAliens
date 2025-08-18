@@ -15,6 +15,7 @@ namespace LegalAliens
         [Header("Object References")]
         [SerializeField] private Transform _tfSpawnParent;
         [SerializeField] private TMP_Text _txtQuestion;
+        [SerializeField] private HeartCounter _heartCounter;
 
         [Header("Debug")]
         [TextArea(4, 30)] public string DebugJson;
@@ -25,6 +26,18 @@ namespace LegalAliens
         public string CurrentQuizAnswer => _currentQuizData.QuizQuestions[_currentQuizIndex].Answer;
         public event Action<bool> OnAnswerChecked;
         public event Action OnFinishQuiz;
+
+        private void Awake()
+        {
+            if (!_heartCounter) _heartCounter = FindAnyObjectByType<HeartCounter>();
+        }
+
+        private void Start()
+        {
+            // TODO: Just for debug, to be refactoed.
+            ParseDebugJson();
+            StartQuiz();
+        }
 
         [ContextMenu("Prase Debug Json")]
         private void ParseDebugJson()
@@ -93,13 +106,17 @@ namespace LegalAliens
             bool result = option == CurrentQuizAnswer;
             Debug.Log($"Option selected: {option}. Correct Answer: {CurrentQuizAnswer}.");
             OnAnswerChecked?.Invoke(result);
+            if (result == false)
+            {
+                _heartCounter.LoseOneHeart();
+            }
             StartCoroutine(PresentQuizQuestionResult(result));
         }
 
         private IEnumerator PresentQuizQuestionResult(bool isCorrect)
         {
-            // Animations, sound effects, etc.
-            yield return new WaitForSeconds(3f);
+            // TODO: Animations, sound effects, etc.
+            yield return new WaitForSeconds(0f);
             if (_currentQuizIndex >= _currentQuizData.QuizQuestions.Length - 1)
             {
                 OnFinishQuiz?.Invoke();

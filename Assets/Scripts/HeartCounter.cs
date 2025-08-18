@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,12 @@ namespace LegalAliens
 
         public int HeartCount => _heartImages.Count;
         public event Action<int> OnHeartCountChanged;
+        public event Action OnLoseAllHeats;
+
+        private void Start()
+        {
+            ResetHearts();
+        }
 
         [ContextMenu("Initialize Hearts")]
         public void LoseOneHeart()
@@ -23,6 +30,12 @@ namespace LegalAliens
             Destroy(_heartImages[0].gameObject);
             _heartImages.RemoveAt(0);
             OnHeartCountChanged?.Invoke(HeartCount);
+            if (HeartCount == 0)
+            {
+                OnLoseAllHeats?.Invoke();
+                // TODO: VFX SFX etc.
+                Debug.Log("YOU DIED!!!!");
+            }
         }
 
         [ContextMenu("Reset Hearts")]
