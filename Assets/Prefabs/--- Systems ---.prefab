@@ -229,6 +229,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: OpenAIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8961657567545766255, guid: 44ea7e34b00c1104883fec3c3f4eec47, type: 3}
+      propertyPath: _image
+      value: 
+      objectReference: {fileID: 2800000, guid: 1db4e96e30d1d574593c2e45c4ad19c4, type: 3}
+    - target: {fileID: 8961657567545766255, guid: 44ea7e34b00c1104883fec3c3f4eec47, type: 3}
+      propertyPath: _prompt
+      value: Tell three individual objects you see in this image. Answer in 3 words,
+        one for each object..
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961657567545766255, guid: 44ea7e34b00c1104883fec3c3f4eec47, type: 3}
+      propertyPath: _generateQuizPrompt
+      value: "Draft a quiz with 3 questions regarding the object in the image. The
+        questions should be very easy. Format the response in json, with objects
+        of the following definition: \r\npublic class QuizData\r\n    {\r\n       
+        public string QuizzedObjectName;\r\n        public QuizQuestion[] QuizQuestions;\r\n   
+        }\r\n    public class QuizQuestion\r\n    {\r\n        public string Question;\r\n       
+        public string[] Options;\r\n        public string Answer;\r\n    }"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

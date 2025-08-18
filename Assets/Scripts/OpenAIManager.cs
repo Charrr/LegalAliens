@@ -8,7 +8,12 @@ namespace LegalAliens
 {
     public class OpenAIManager : MonoBehaviour
     {
-        [SerializeField, TextArea(4, 20)] private string _prompt = "Tell three objects you see in this image.";
+        [SerializeField, TextArea(4, 20)] private string _prompt = "Tell three individual objects you see in this image. Answer in 3 words, one for each object..";
+        [SerializeField, TextArea(4, 50)] private string _generateQuizPrompt = 
+            "Draft a quiz with 3 questions regarding the object in the image. " +
+            "The questions should be very easy. Your response should be a pure json, with objects of the following definition: \r\n" +
+            "public class QuizData\r\n    {\r\n        public string QuizzedObjectName;\r\n        public QuizQuestion[] QuizQuestions;\r\n    }\r\n    public class QuizQuestion\r\n    {\r\n        public string Question;\r\n        public string[] Options;\r\n        public string Answer;\r\n    }";
+
         [SerializeField] private Texture2D _image;
         private string _apiKey;
 
@@ -26,10 +31,16 @@ namespace LegalAliens
             }
         }
 
+        public void PromptGenerateQuizBasedOnImage(Texture2D image)
+        {
+            StartCoroutine(SendPromptWithImageCoroutine(_generateQuizPrompt, image));
+        }
+
         [ContextMenu("Send Image Prompt")]
         private void SendImagePrompt()
         {
-            StartCoroutine(SendPromptWithImageCoroutine(_prompt, _image));
+            //StartCoroutine(SendPromptWithImageCoroutine(_prompt, _image));
+            PromptGenerateQuizBasedOnImage(_image);
         }
 
         [ContextMenu("Send Text Prompt")]
@@ -93,6 +104,7 @@ namespace LegalAliens
             else
             {
                 Debug.Log("Full JSON:\n" + request.downloadHandler.text);
+                Debug.Log("Extracted output: " + OpenAIResponseParser.ExtractText(request.downloadHandler.text));
             }
         }
 
