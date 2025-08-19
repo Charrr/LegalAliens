@@ -27,4 +27,58 @@ public static class Utility
         RenderTexture.ReleaseTemporary(rt);
         return copy;
     }
+
+    public static Texture2D ResizeTexture(Texture2D source, int targetWidth)
+    {
+        int originalWidth = source.width;
+        int originalHeight = source.height;
+        float aspectRatio = (float)originalHeight / originalWidth;
+        int targetHeight = Mathf.RoundToInt(targetWidth * aspectRatio);
+
+        // Create a new texture with the target dimensions
+        Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, false);
+
+        // Scale pixels using bilinear filtering
+        for (int y = 0; y < targetHeight; y++)
+        {
+            for (int x = 0; x < targetWidth; x++)
+            {
+                float u = (float)x / (float)targetWidth;
+                float v = (float)y / (float)targetHeight;
+                Color color = source.GetPixelBilinear(u, v);
+                result.SetPixel(x, y, color);
+            }
+        }
+        result.Apply();
+        return result;
+    }
+
+    public static Texture2D CropTexture(Texture2D source, int a, int b, int c, int d)
+    {
+        // Ensure the texture is readable
+        source = EnsureReadable(source);
+
+        int cropWidth = c - a + 1;
+        int cropHeight = d - b + 1;
+
+        // Clamp values to source texture bounds
+        a = Mathf.Clamp(a, 0, source.width - 1);
+        c = Mathf.Clamp(c, 0, source.width - 1);
+        b = Mathf.Clamp(b, 0, source.height - 1);
+        d = Mathf.Clamp(d, 0, source.height - 1);
+
+        cropWidth = c - a + 1;
+        cropHeight = d - b + 1;
+
+        Color[] pixels = source.GetPixels(a, b, cropWidth, cropHeight);
+        Texture2D cropped = new Texture2D(cropWidth, cropHeight, source.format, false);
+        cropped.SetPixels(pixels);
+        cropped.Apply();
+        return cropped;
+    }
+
+    public static Texture2D CropByBoundingBox(Texture2D source, int x0, int y0, int x1, int y1)
+    {
+        return CropTexture(source, x0, y0, x1, y1);
+    }
 }

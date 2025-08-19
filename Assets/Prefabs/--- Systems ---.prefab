@@ -34,6 +34,8 @@ Transform:
   - {fileID: 2455169758016248545}
   - {fileID: 7917636557862631651}
   - {fileID: 679279414436224362}
+  - {fileID: 5153192054250955095}
+  - {fileID: 7512732233133483658}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3475268502407655609
@@ -127,12 +129,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e5a9f46066fc54eb594503cf45be5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.QuizManager
-  _btnAnswerOptionPrefab: {fileID: 0}
+  _btnAnswerOptionPrefab: {fileID: 1726174554727410537, guid: 721810609c0fc1f4f98f516baaaee183, type: 3}
   _tfOptionsSpawnParent: {fileID: 0}
   _txtQuestion: {fileID: 0}
   _heartCounter: {fileID: 0}
-  _openAIManager: {fileID: 0}
-  DebugJson: 
+  _openAIManager: {fileID: 7253120351406362854}
+  DebugJson: "{\r\n  \"QuizzedObjectName\": \"Flower Pot\",\r\n  \"QuizQuestions\":
+    [\r\n    {\r\n      \"Question\": \"What color is the large flower in the middle
+    of the pot?\",\r\n      \"Options\": [\"Red\", \"Yellow\", \"Blue\", \"White\"],\r\n     
+    \"Answer\": \"Yellow\"\r\n    },\r\n    {\r\n      \"Question\": \"What type
+    of container holds the flowers?\",\r\n      \"Options\": [\"Glass jar\", \"Ceramic
+    pot\", \"Plastic cup\", \"Wooden box\"],\r\n      \"Answer\": \"Ceramic pot\"\r\n   
+    },\r\n    {\r\n      \"Question\": \"What kind of leaves are surrounding the
+    flowers?\",\r\n      \"Options\": [\"Ivy leaves\", \"Palm leaves\", \"Pine needles\",
+    \"Cactus leaves\"],\r\n      \"Answer\": \"Ivy leaves\"\r\n    }\r\n  ]\r\n}\r\n"
 --- !u!1 &3676468149141901698
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.DwaniAIManager
   _serverUrl: https://api.dwani.ai/detect/
+  _maxObject: 10
+  _minConfidence: 0.5
 --- !u!1 &7278155388420919115
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +334,128 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8188706920398720961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5153192054250955095}
+  - component: {fileID: 902552913431682369}
+  m_Layer: 0
+  m_Name: ScreenshotController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5153192054250955095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188706920398720961}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5509530601440428813}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &902552913431682369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188706920398720961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d65faafb161d44e86fd0d83a68fbcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.ScreenshotController
+  _btnConfirmView: {fileID: 0}
+  _renderTexture: {fileID: 8400000, guid: ec56b439f8a460f47b67bbe2b569efbf, type: 2}
+  _screenshotCamera: {fileID: 0}
+  _screenshotPresenter: {fileID: 0}
+  _webCamTextureManager: {fileID: 1281780837141929640}
+--- !u!1001 &688195969559786796
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5509530601440428813}
+    m_Modifications:
+    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00404
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.86836
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.24997
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847449403238870662, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+      propertyPath: m_Name
+      value: WebCamTextureManagerPrefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+--- !u!114 &1281780837141929640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1748868316715821956, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+  m_PrefabInstance: {fileID: 688195969559786796}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9a7893e57c04c0db4114c70954b915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &7512732233133483658 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
+  m_PrefabInstance: {fileID: 688195969559786796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1798755480332018057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -402,3 +536,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1467540711456014022, guid: 44ea7e34b00c1104883fec3c3f4eec47, type: 3}
   m_PrefabInstance: {fileID: 1798755480332018057}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7253120351406362854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8961657567545766255, guid: 44ea7e34b00c1104883fec3c3f4eec47, type: 3}
+  m_PrefabInstance: {fileID: 1798755480332018057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9681af9ad041d3b4ba53fa5490d28d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.OpenAIManager
