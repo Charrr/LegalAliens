@@ -99,3 +99,5 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 Assets/Settings/openai-api-key.txt
 Assets/Settings/openai-api-key.txt.meta
+Assets/Data/ApiKeyManager.asset
+Assets/Data/ApiKeyManager.asset.meta

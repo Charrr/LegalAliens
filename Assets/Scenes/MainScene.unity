@@ -1962,6 +1962,7 @@ MonoBehaviour:
   _gameManager: {fileID: 8466257311400735079}
   _mainCanvasPresenter: {fileID: 5936374499462766053}
   _openAIManager: {fileID: 0}
+  _screenshotController: {fileID: 0}
   _detectionData:
     detections: []
 --- !u!1 &1898805332
@@ -2956,6 +2957,10 @@ PrefabInstance:
       propertyPath: _objectSelectionCanvas
       value: 
       objectReference: {fileID: 4906123724453449822}
+    - target: {fileID: 7253120351406362854, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+      propertyPath: _apiKeyManager
+      value: 
+      objectReference: {fileID: 11400000, guid: 79fae397dcae1ff49a13773835a48441, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

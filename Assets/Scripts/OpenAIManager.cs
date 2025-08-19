@@ -17,24 +17,25 @@ namespace LegalAliens
             "public class QuizData\r\n    {\r\n        public string QuizzedObjectName;\r\n        public QuizQuestion[] QuizQuestions;\r\n    }\r\n    public class QuizQuestion\r\n    {\r\n        public string Question;\r\n        public string[] Options;\r\n        public string Answer;\r\n    }";
 
         [SerializeField] private Texture2D _image;
-        private string _apiKey;
+        [SerializeField] private ApiKeyManager _apiKeyManager;
+        private string _apiKey => _apiKeyManager.OpenAIKey;
 
         public event Action OnRequestImagePrompt;
         public event Action<string> OnReceiveQuizJson;
 
-        private void Awake()
-        {
-            string keyPath = Path.Combine(Application.dataPath, "Settings", "openai-api-key.txt");
-            try
-            {
-                _apiKey = File.ReadAllText(keyPath).Trim();
-            }
-            catch (IOException e)
-            {
-                Debug.LogError($"Failed to read API key: {e.Message}");
-                _apiKey = "";
-            }
-        }
+        //private void Awake()
+        //{
+        //    string keyPath = Path.Combine(Application.dataPath, "Settings", "openai-api-key.txt");
+        //    try
+        //    {
+        //        _apiKey = File.ReadAllText(keyPath).Trim();
+        //    }
+        //    catch (IOException e)
+        //    {
+        //        Debug.LogError($"Failed to read API key: {e.Message}");
+        //        _apiKey = "";
+        //    }
+        //}
 
         public void PromptGenerateQuizBasedOnImage(Texture2D image)
         {
