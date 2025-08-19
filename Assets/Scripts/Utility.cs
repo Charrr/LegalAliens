@@ -86,6 +86,16 @@ public static class Utility
 
     public static Texture2D CropByBoundingBox(Texture2D source, int x0, int y0, int x1, int y1)
     {
-        return CropTexture(source, x0, y0, x1, y1);
+        int height = source.height;
+
+        // Convert top-left Y to bottom-left Y
+        int y0_converted = height - y0 - 1;
+        int y1_converted = height - y1 - 1;
+
+        // Ensure y0_converted is the minimum
+        int yMin = Mathf.Min(y0_converted, y1_converted);
+        int yMax = Mathf.Max(y0_converted, y1_converted);
+
+        return CropTexture(source, x0, yMin, x1, yMax);
     }
 }
