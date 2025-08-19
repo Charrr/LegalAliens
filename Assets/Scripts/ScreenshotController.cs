@@ -1,3 +1,5 @@
+using PassthroughCameraSamples;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,20 +14,25 @@ namespace LegalAliens
         // Assign the main camera or the MR camera in the Inspector
         [SerializeField] private Camera _screenshotCamera;
         [SerializeField] private ScreenshotPresenter _screenshotPresenter;
+        [SerializeField] private WebCamTextureManager _webCamTextureManager;
 
         private void Awake()
         {
             if (!_screenshotCamera)
                 _screenshotCamera = Camera.main;
+            if (!_webCamTextureManager)
+                _webCamTextureManager = FindAnyObjectByType<WebCamTextureManager>();
+            if (!_screenshotPresenter)
+                _screenshotPresenter = FindAnyObjectByType<ScreenshotPresenter>();
         }
         private void Start()
         {
-            _btnConfirmView.onClick.AddListener(ConfirmView);
+            _btnConfirmView.onClick.AddListener(MakeCameraSnapshot);
         }
 
         private void OnDestroy()
         {
-            _btnConfirmView.onClick.RemoveListener(ConfirmView);
+            _btnConfirmView.onClick.RemoveListener(MakeCameraSnapshot);
         }
 
         public Texture2D CaptureScreenshot()
@@ -55,6 +62,39 @@ namespace LegalAliens
             _screenshotCamera.cullingMask = originalMask;
 
             return screenshot;
+        }
+
+        [ContextMenu("Capture MR Frame")]
+        public void Capture() => StartCoroutine(CaptureCo());
+
+        IEnumerator CaptureCo()
+        {
+            yield return new WaitForEndOfFrame();
+
+            int w = Screen.width, h = Screen.height;
+            var tex = new Texture2D(w, h, TextureFormat.RGB24, false);
+            tex.ReadPixels(new Rect(0, 0, w, h), 0, 0);
+            tex.Apply();
+            _screenshotPresenter.SetScreenshot(tex);
+
+            Destroy(tex);
+        }
+
+        public void MakeCameraSnapshot()
+        {
+            var webCamTexture = _webCamTextureManager.WebCamTexture;
+            if (webCamTexture == null || !webCamTexture.isPlaying)
+                return;
+
+            var cameraSnapshot = new Texture2D(webCamTexture.width, webCamTexture.height, TextureFormat.RGBA32, false);
+            
+            // Copy the last available image from WebCamTexture to a separate object
+            Color32[] m_pixelsBuffer = new Color32[webCamTexture.width * webCamTexture.height];
+            _ = _webCamTextureManager.WebCamTexture.GetPixels32(m_pixelsBuffer);
+            cameraSnapshot.SetPixels32(m_pixelsBuffer);
+            cameraSnapshot.Apply();
+
+            _screenshotPresenter.SetScreenshot(cameraSnapshot);
         }
 
         private void ConfirmView()
