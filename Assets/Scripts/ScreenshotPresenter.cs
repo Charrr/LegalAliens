@@ -84,18 +84,27 @@ namespace LegalAliens
             {
                 BoundingBox boundingBox = Instantiate(_boundingBoxPrefab, _imgScreenshot.transform);
                 boundingBox.ConfigureBoundingBox(detection);
-                boundingBox.OnBoundingBoxSelected += (det) =>
-                {
-                    Texture2D texture = _screenshotController.CurrentSnapshotRisized;
-                    var croppedTexture = Utility.CropByBoundingBox(texture, det.box[0], det.box[1], det.box[2], det.box[3]);
-                    _gameManager.CurrentState = GameState.InQuiz;
-                    _mainCanvasPresenter.SetSelectedObjectImage(croppedTexture);
-                    _openAIManager.PromptGenerateQuizBasedOnImage(croppedTexture);
-                    //_quizManager.SetCurrentQuizImage(croppedTexture);
-                    Debug.Log($"Selected: {det.label} with confidence {det.confidence * 100:F2}%");
-                    // Handle selection logic here, e.g., highlight the object, show more info, etc.
-                };
+                //boundingBox.OnBoundingBoxSelected += (det) =>
+                //{
+                //    Texture2D texture = _screenshotController.CurrentSnapshotRisized;
+                //    var croppedTexture = Utility.CropByBoundingBox(texture, det.box[0], det.box[1], det.box[2], det.box[3]);
+                //    _gameManager.CurrentState = GameState.InQuiz;
+                //    _mainCanvasPresenter.SetSelectedObjectImage(croppedTexture);
+                //    _openAIManager.PromptGenerateQuizBasedOnImage(croppedTexture);
+                //    //_quizManager.SetCurrentQuizImage(croppedTexture);
+                //    Debug.Log($"Selected: {det.label} with confidence {det.confidence * 100:F2}%");
+                //    // Handle selection logic here, e.g., highlight the object, show more info, etc.
+                //};
             }
         }
-    } 
+
+        public void ConfirmSelectObject(DwaniAIResponse.Detection detection)
+        {
+            Texture2D texture = _screenshotController.CurrentSnapshotRisized;
+            var croppedTexture = Utility.CropByBoundingBox(texture, detection.box[0], detection.box[1], detection.box[2], detection.box[3]);
+            _gameManager.CurrentState = GameState.InQuiz;
+            _mainCanvasPresenter.SetSelectedObjectImage(croppedTexture);
+            _openAIManager.PromptGenerateQuizBasedOnImage(croppedTexture);
+        }
+    }
 }

@@ -82,7 +82,6 @@ public class Character_Controller : MonoBehaviour
     }
 
     // --- SPEAKING STATE ---
-    [ContextMenu("Ask a Question")]
     public void Ask_a_question(int index)
     {
         StopAllCoroutines();

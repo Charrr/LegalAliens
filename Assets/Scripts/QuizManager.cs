@@ -18,6 +18,7 @@ namespace LegalAliens
         [SerializeField] private HeartCounter _heartCounter;
         [SerializeField] private OpenAIManager _openAIManager;
         [SerializeField] private GameManager _gameManager;
+        [SerializeField] private Character_Controller _alienCtrl;
 
         [Header("Debug")]
         [TextArea(4, 30)] public string DebugJson;
@@ -34,11 +35,13 @@ namespace LegalAliens
             if (!_heartCounter) _heartCounter = FindAnyObjectByType<HeartCounter>();
             if (!_openAIManager) _openAIManager = FindAnyObjectByType<OpenAIManager>();
             if (!_gameManager) _gameManager = FindAnyObjectByType<GameManager>();
+            if (!_alienCtrl) _alienCtrl = FindAnyObjectByType<Character_Controller>();
         }
 
         private void Start()
         {
             _openAIManager.OnReceiveQuizJson += ProcessQuizDataJson;
+            InitView();
             // TODO: Just for debug, to be refactoed.
             //ParseDebugJson();
             //StartQuiz();
@@ -47,6 +50,12 @@ namespace LegalAliens
         private void OnDestroy()
         {
             _openAIManager.OnReceiveQuizJson -= ProcessQuizDataJson;
+        }
+
+        public void InitView()
+        {
+            _heartCounter.ResetHearts();
+            FindAnyObjectByType<MainCanvasPresenter>().IsLoadingQuiz = true;
         }
 
         [ContextMenu("Prase Debug Json")]
@@ -160,26 +169,32 @@ namespace LegalAliens
             Debug.Log("Quiz Finished!");
             OnFinishQuiz?.Invoke();
             StartCoroutine(EvaluateAndPresentQuizResult());
-            _gameManager.CurrentState = GameState.ConfirmView;
         }
 
         private IEnumerator EvaluateAndPresentQuizResult()
         {
-            // TODO: Animations, sound effects, etc.
-            yield return new WaitForSeconds(0f);
-
             if (_heartCounter.HeartCount == 0)
             {
+                _alienCtrl.gameObject.SetActive(true);
+                _alienCtrl.Become_Sad();
                 // TODO: Show game over screen or similar.
             }
             else if (_heartCounter.HeartCount == _currentQuizData.QuizQuestions.Length)
             {
+                _alienCtrl.gameObject.SetActive(true);
+                _alienCtrl.Become_Happy();
                 // TODO: Show perfect score screen or similar.
             }
             else
             {
+                _alienCtrl.gameObject.SetActive(true);
+                _alienCtrl.Become_Happy();
                 // TODO: Show score screen or similar.
             }
+
+            // TODO: Animations, sound effects, etc.
+            yield return new WaitForSeconds(5f);
+            _gameManager.CurrentState = GameState.ConfirmView;
         }
     }
 

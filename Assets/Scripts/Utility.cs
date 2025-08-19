@@ -5,6 +5,11 @@ public static class Utility
     // Makes a readable, uncompressed copy if needed (avoids EncodeToJPG errors on compressed textures).
     public static Texture2D EnsureReadable(Texture2D src)
     {
+        if (src == null)
+        {
+            return null;
+        }
+
         try
         {
             // If already readable in a supported format, just return it.

@@ -41,6 +41,7 @@ namespace LegalAliens
         private void SelectButton()
         {
             OnBoundingBoxSelected?.Invoke(Detection);
+            FindAnyObjectByType<ScreenshotPresenter>(FindObjectsInactive.Include).ConfirmSelectObject(Detection);
         }
     }
 }
