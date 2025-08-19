@@ -42,6 +42,7 @@ public class Character_Controller : MonoBehaviour
     }
 
     // --- HAPPY STATE ---
+    [ContextMenu("Become Happy")]
     public void Become_Happy()
     {
         StopAllCoroutines();
@@ -61,6 +62,7 @@ public class Character_Controller : MonoBehaviour
     }
 
     // --- SAD STATE ---
+    [ContextMenu("Become Sad")]
     public void Become_Sad()
     {
         StopAllCoroutines();
@@ -80,6 +82,7 @@ public class Character_Controller : MonoBehaviour
     }
 
     // --- SPEAKING STATE ---
+    [ContextMenu("Ask a Question")]
     public void Ask_a_question(int index)
     {
         StopAllCoroutines();
