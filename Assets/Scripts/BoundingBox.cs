@@ -28,7 +28,7 @@ namespace LegalAliens
         {
             Detection = detection;
             name = "BoundingBox: " + detection.label;
-            Color col = UnityEngine.Random.ColorHSV(0f, 1f, 0.7f, 0.9f, 0.5f, 1f, 0.5f, 0.5f); // Random color
+            Color col = UnityEngine.Random.ColorHSV(0f, 1f, 0.7f, 0.9f, 0.7f, 0.9f, 0.3f, 0.3f); // Random color
             _txt.color = col;
             _txt.text = $"{detection.label} ({detection.confidence * 100:F2}%)";
             _txt.rectTransform.anchoredPosition = new Vector2(detection.box[0], -detection.box[1] - 20); // Position text above the box

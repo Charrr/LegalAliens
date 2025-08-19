@@ -82,6 +82,7 @@ namespace LegalAliens
         {
             _currentQuestionIndex = 0;
             ShowQuizOnPanel(_currentQuizData.QuizQuestions[_currentQuestionIndex]);
+            _heartCounter.ResetHearts();
         }
 
         [ContextMenu("Go to Next Quiz")]
@@ -142,7 +143,7 @@ namespace LegalAliens
         private IEnumerator PresentQuizQuestionResult(bool isCorrect)
         {
             // TODO: Animations, sound effects, etc.
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(0f);
 
             if (_currentQuestionIndex >= _currentQuizData.QuizQuestions.Length - 1)
             {
