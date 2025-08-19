@@ -15,6 +15,7 @@ namespace LegalAliens
         [SerializeField] private Camera _screenshotCamera;
         [SerializeField] private ScreenshotPresenter _screenshotPresenter;
         [SerializeField] private WebCamTextureManager _webCamTextureManager;
+        [SerializeField] private GameManager _gameManager;
 
         [Header("Debug")]
         [SerializeField] private Texture2D _debugTexture;
@@ -27,6 +28,8 @@ namespace LegalAliens
                 _webCamTextureManager = FindAnyObjectByType<WebCamTextureManager>();
             if (!_screenshotPresenter)
                 _screenshotPresenter = FindAnyObjectByType<ScreenshotPresenter>();
+            if (!_gameManager)
+                _gameManager = FindAnyObjectByType<GameManager>();
         }
 
         private void Start()
@@ -106,11 +109,14 @@ namespace LegalAliens
             if (Application.isEditor)
             {
                 _screenshotPresenter.SetScreenshot(_debugTexture);
-                return;
             }
-            Texture2D screenshot = MakeCameraSnapshot();
-            Texture2D resized = Utility.ResizeTexture(screenshot, 1024);
-            _screenshotPresenter.SetScreenshot(resized);
+            else
+            {
+                Texture2D screenshot = MakeCameraSnapshot();
+                Texture2D resized = Utility.ResizeTexture(screenshot, 1024);
+                _screenshotPresenter.SetScreenshot(resized);
+            }
+            _gameManager.CurrentState = GameState.SelectObject;
         }
     } 
 }

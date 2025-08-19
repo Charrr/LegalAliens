@@ -1959,6 +1959,7 @@ MonoBehaviour:
   _imgScreenshot: {fileID: 1889677389}
   _dwaniAIManager: {fileID: 797950392}
   _quizManager: {fileID: 1252762472}
+  _gameManager: {fileID: 8466257311400735079}
   _detectionData:
     detections: []
 --- !u!1 &1898805332
@@ -2764,6 +2765,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+--- !u!223 &5936374499462766052 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5954255527269316839, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+  m_PrefabInstance: {fileID: 5936374499462766051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6001413612598866704
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2925,11 +2931,34 @@ PrefabInstance:
       propertyPath: _tfOptionsSpawnParent
       value: 
       objectReference: {fileID: 272503836}
+    - target: {fileID: 7168302029098393381, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+      propertyPath: _quizCanvas
+      value: 
+      objectReference: {fileID: 5936374499462766052}
+    - target: {fileID: 7168302029098393381, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+      propertyPath: _screenshotCanvas
+      value: 
+      objectReference: {fileID: 34122097}
+    - target: {fileID: 7168302029098393381, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+      propertyPath: _objectSelectionCanvas
+      value: 
+      objectReference: {fileID: 4906123724453449822}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+--- !u!114 &8466257311400735079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7168302029098393381, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+  m_PrefabInstance: {fileID: 8466257311400735078}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc54926365f1049c49acb5657ab3e234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.GameManager
 --- !u!114 &8705638313994091324
 MonoBehaviour:
   m_ObjectHideFlags: 0

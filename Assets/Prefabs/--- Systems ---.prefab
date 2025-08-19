@@ -36,6 +36,7 @@ Transform:
   - {fileID: 679279414436224362}
   - {fileID: 5153192054250955095}
   - {fileID: 7512732233133483658}
+  - {fileID: 2134850893931724621}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3475268502407655609
@@ -85,6 +86,7 @@ MonoBehaviour:
   _testImage: {fileID: 2800000, guid: 1db4e96e30d1d574593c2e45c4ad19c4, type: 3}
   _detectionData:
     detections: []
+  _dwaniAIManager: {fileID: 7211380346906139958}
 --- !u!1 &3521475021510973240
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +385,55 @@ MonoBehaviour:
   _screenshotCamera: {fileID: 0}
   _screenshotPresenter: {fileID: 0}
   _webCamTextureManager: {fileID: 1281780837141929640}
+  _gameManager: {fileID: 7168302029098393381}
+  _debugTexture: {fileID: 2800000, guid: 9e9ea8b458517814b83852a90e32fba8, type: 3}
+--- !u!1 &8490825732944504515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2134850893931724621}
+  - component: {fileID: 7168302029098393381}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2134850893931724621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8490825732944504515}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5509530601440428813}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7168302029098393381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8490825732944504515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc54926365f1049c49acb5657ab3e234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.GameManager
+  _quizCanvas: {fileID: 0}
+  _objectSelectionCanvas: {fileID: 0}
+  _screenshotCanvas: {fileID: 0}
 --- !u!1001 &688195969559786796
 PrefabInstance:
   m_ObjectHideFlags: 0
