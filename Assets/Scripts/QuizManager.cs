@@ -17,6 +17,7 @@ namespace LegalAliens
         [SerializeField] private TMP_Text _txtQuestion;
         [SerializeField] private HeartCounter _heartCounter;
         [SerializeField] private OpenAIManager _openAIManager;
+        [SerializeField] private GameManager _gameManager;
 
         [Header("Debug")]
         [TextArea(4, 30)] public string DebugJson;
@@ -32,6 +33,7 @@ namespace LegalAliens
         {
             if (!_heartCounter) _heartCounter = FindAnyObjectByType<HeartCounter>();
             if (!_openAIManager) _openAIManager = FindAnyObjectByType<OpenAIManager>();
+            if (!_gameManager) _gameManager = FindAnyObjectByType<GameManager>();
         }
 
         private void Start()
@@ -141,9 +143,11 @@ namespace LegalAliens
         {
             // TODO: Animations, sound effects, etc.
             yield return new WaitForSeconds(0f);
+
             if (_currentQuizIndex >= _currentQuizData.QuizQuestions.Length - 1)
             {
                 OnFinishQuiz?.Invoke();
+                _gameManager.CurrentState = GameState.None;
             }
             else
             {
