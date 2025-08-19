@@ -23,9 +23,9 @@ namespace LegalAliens
         [TextArea(4, 30)] public string DebugJson;
 
         private QuizData _currentQuizData;
-        private int _currentQuizIndex;
+        private int _currentQuestionIndex;
 
-        public string CurrentQuizAnswer => _currentQuizData.QuizQuestions[_currentQuizIndex].Answer;
+        public string CurrentQuizAnswer => _currentQuizData.QuizQuestions[_currentQuestionIndex].Answer;
         public event Action<bool> OnAnswerChecked;
         public event Action OnFinishQuiz;
 
@@ -80,18 +80,18 @@ namespace LegalAliens
         [ContextMenu("Start Quiz")]
         private void StartQuiz()
         {
-            _currentQuizIndex = 0;
-            ShowQuizOnPanel(_currentQuizData.QuizQuestions[_currentQuizIndex]);
+            _currentQuestionIndex = 0;
+            ShowQuizOnPanel(_currentQuizData.QuizQuestions[_currentQuestionIndex]);
         }
 
         [ContextMenu("Go to Next Quiz")]
         private void GoToNextQuestion()
         {
-            if (_currentQuizIndex < _currentQuizData.QuizQuestions.Length)
+            if (_currentQuestionIndex < _currentQuizData.QuizQuestions.Length)
             {
-                _currentQuizIndex++;
+                _currentQuestionIndex++;
             }
-            ShowQuizOnPanel(_currentQuizData.QuizQuestions[_currentQuizIndex]);
+            ShowQuizOnPanel(_currentQuizData.QuizQuestions[_currentQuestionIndex]);
         }
 
         private void ShowQuizOnPanel(QuizQuestion quiz)
@@ -102,7 +102,7 @@ namespace LegalAliens
 
         private void SetQuestionText(string text)
         {
-            _txtQuestion.text = (_currentQuizIndex + 1) + ". " + text;
+            _txtQuestion.text = (_currentQuestionIndex + 1) + ". " + text;
         }
 
         private void CreateOptions(string[] options)
@@ -142,9 +142,9 @@ namespace LegalAliens
         private IEnumerator PresentQuizQuestionResult(bool isCorrect)
         {
             // TODO: Animations, sound effects, etc.
-            yield return new WaitForSeconds(0f);
+            yield return new WaitForSeconds(3f);
 
-            if (_currentQuizIndex >= _currentQuizData.QuizQuestions.Length - 1)
+            if (_currentQuestionIndex >= _currentQuizData.QuizQuestions.Length - 1)
             {
                 FinishQuiz();
             }
@@ -159,7 +159,7 @@ namespace LegalAliens
             Debug.Log("Quiz Finished!");
             OnFinishQuiz?.Invoke();
             StartCoroutine(EvaluateAndPresentQuizResult());
-            _gameManager.CurrentState = GameState.None;
+            _gameManager.CurrentState = GameState.ConfirmView;
         }
 
         private IEnumerator EvaluateAndPresentQuizResult()

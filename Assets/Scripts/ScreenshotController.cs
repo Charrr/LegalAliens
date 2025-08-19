@@ -20,6 +20,9 @@ namespace LegalAliens
         [Header("Debug")]
         [SerializeField] private Texture2D _debugTexture;
 
+        private Texture2D _currentSnapshotResized;
+        public Texture2D CurrentSnapshotRisized => _currentSnapshotResized;
+
         private void Awake()
         {
             if (!_screenshotCamera)
@@ -114,6 +117,7 @@ namespace LegalAliens
             {
                 Texture2D screenshot = MakeCameraSnapshot();
                 Texture2D resized = Utility.ResizeTexture(screenshot, 1024);
+                _currentSnapshotResized = resized;
                 _screenshotPresenter.SetScreenshot(resized);
             }
             _gameManager.CurrentState = GameState.SelectObject;

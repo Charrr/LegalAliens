@@ -17,6 +17,7 @@ namespace LegalAliens
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private MainCanvasPresenter _mainCanvasPresenter;
         [SerializeField] private OpenAIManager _openAIManager;
+        [SerializeField] private ScreenshotController _screenshotController;
 
         [Header("Response Data")]
         [SerializeField] private DwaniAIResponse.DetectionData _detectionData;
@@ -42,6 +43,10 @@ namespace LegalAliens
             if (!_openAIManager)
             {
                 _openAIManager = FindAnyObjectByType<OpenAIManager>();
+            }
+            if (!_screenshotController)
+            {
+                _screenshotController = FindAnyObjectByType<ScreenshotController>();
             }
         }
 
@@ -81,7 +86,8 @@ namespace LegalAliens
                 boundingBox.ConfigureBoundingBox(detection);
                 boundingBox.OnBoundingBoxSelected += (det) =>
                 {
-                    var croppedTexture = Utility.CropByBoundingBox(_imgScreenshot.texture as Texture2D, det.box[0], det.box[1], det.box[2], det.box[3]);
+                    Texture2D texture = _screenshotController.CurrentSnapshotRisized;
+                    var croppedTexture = Utility.CropByBoundingBox(texture, det.box[0], det.box[1], det.box[2], det.box[3]);
                     _gameManager.CurrentState = GameState.InQuiz;
                     _mainCanvasPresenter.SetSelectedObjectImage(croppedTexture);
                     _openAIManager.PromptGenerateQuizBasedOnImage(croppedTexture);
