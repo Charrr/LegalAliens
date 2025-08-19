@@ -165,7 +165,7 @@ namespace LegalAliens
         private IEnumerator EvaluateAndPresentQuizResult()
         {
             // TODO: Animations, sound effects, etc.
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0f);
 
             if (_heartCounter.HeartCount == 0)
             {

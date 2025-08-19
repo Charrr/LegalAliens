@@ -1366,6 +1366,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1815469580}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1090766505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 902552913431682369, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
+  m_PrefabInstance: {fileID: 8466257311400735078}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d65faafb161d44e86fd0d83a68fbcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.ScreenshotController
 --- !u!1 &1097491902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,8 +1972,8 @@ MonoBehaviour:
   _quizManager: {fileID: 1252762472}
   _gameManager: {fileID: 8466257311400735079}
   _mainCanvasPresenter: {fileID: 5936374499462766053}
-  _openAIManager: {fileID: 0}
-  _screenshotController: {fileID: 0}
+  _openAIManager: {fileID: 511663892}
+  _screenshotController: {fileID: 1090766505}
   _detectionData:
     detections: []
 --- !u!1 &1898805332
@@ -2569,7 +2580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2583125105818602820, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3938359946228251320, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2586,6 +2597,10 @@ PrefabInstance:
     - target: {fileID: 3938359946228251320, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016435423250592638, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+      propertyPath: m_AspectMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4701477718447243588, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2733,7 +2748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7589929048261623539, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -502
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7955447931333825413, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
       propertyPath: _size.x

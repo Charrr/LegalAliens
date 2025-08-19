@@ -41,6 +41,7 @@ namespace LegalAliens
         public void SetSelectedObjectImage(Texture tex)
         {
             _imgSelectedObject.texture = tex;
+            _imgSelectedObject.GetComponent<AspectRatioFitter>().aspectRatio = (float)tex.width / tex.height;
         }
 
         private void UpdateViewOnLoadingQuiz()
