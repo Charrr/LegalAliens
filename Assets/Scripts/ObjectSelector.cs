@@ -8,7 +8,7 @@ namespace LegalAliens
     {
         [SerializeField] private Texture2D _testImage;
         [SerializeField] private DwaniAIResponse.DetectionData _detectionData;
-        private DwaniAIManager _dwaniAIManager;
+        [SerializeField] private DwaniAIManager _dwaniAIManager;
 
         private void Awake()
         {

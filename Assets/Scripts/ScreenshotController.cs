@@ -16,6 +16,9 @@ namespace LegalAliens
         [SerializeField] private ScreenshotPresenter _screenshotPresenter;
         [SerializeField] private WebCamTextureManager _webCamTextureManager;
 
+        [Header("Debug")]
+        [SerializeField] private Texture2D _debugTexture;
+
         private void Awake()
         {
             if (!_screenshotCamera)
@@ -25,6 +28,7 @@ namespace LegalAliens
             if (!_screenshotPresenter)
                 _screenshotPresenter = FindAnyObjectByType<ScreenshotPresenter>();
         }
+
         private void Start()
         {
             _btnConfirmView.onClick.AddListener(ConfirmView);
@@ -99,6 +103,11 @@ namespace LegalAliens
 
         private void ConfirmView()
         {
+            if (Application.isEditor)
+            {
+                _screenshotPresenter.SetScreenshot(_debugTexture);
+                return;
+            }
             Texture2D screenshot = MakeCameraSnapshot();
             Texture2D resized = Utility.ResizeTexture(screenshot, 1024);
             _screenshotPresenter.SetScreenshot(resized);

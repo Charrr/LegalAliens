@@ -52,4 +52,33 @@ public static class Utility
         result.Apply();
         return result;
     }
+
+    public static Texture2D CropTexture(Texture2D source, int a, int b, int c, int d)
+    {
+        // Ensure the texture is readable
+        source = EnsureReadable(source);
+
+        int cropWidth = c - a + 1;
+        int cropHeight = d - b + 1;
+
+        // Clamp values to source texture bounds
+        a = Mathf.Clamp(a, 0, source.width - 1);
+        c = Mathf.Clamp(c, 0, source.width - 1);
+        b = Mathf.Clamp(b, 0, source.height - 1);
+        d = Mathf.Clamp(d, 0, source.height - 1);
+
+        cropWidth = c - a + 1;
+        cropHeight = d - b + 1;
+
+        Color[] pixels = source.GetPixels(a, b, cropWidth, cropHeight);
+        Texture2D cropped = new Texture2D(cropWidth, cropHeight, source.format, false);
+        cropped.SetPixels(pixels);
+        cropped.Apply();
+        return cropped;
+    }
+
+    public static Texture2D CropByBoundingBox(Texture2D source, int x0, int y0, int x1, int y1)
+    {
+        return CropTexture(source, x0, y0, x1, y1);
+    }
 }
