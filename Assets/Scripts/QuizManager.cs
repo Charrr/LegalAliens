@@ -146,12 +146,38 @@ namespace LegalAliens
 
             if (_currentQuizIndex >= _currentQuizData.QuizQuestions.Length - 1)
             {
-                OnFinishQuiz?.Invoke();
-                _gameManager.CurrentState = GameState.None;
+                FinishQuiz();
             }
             else
             {
                 GoToNextQuestion();
+            }
+        }
+
+        private void FinishQuiz()
+        {
+            Debug.Log("Quiz Finished!");
+            OnFinishQuiz?.Invoke();
+            StartCoroutine(EvaluateAndPresentQuizResult());
+            _gameManager.CurrentState = GameState.None;
+        }
+
+        private IEnumerator EvaluateAndPresentQuizResult()
+        {
+            // TODO: Animations, sound effects, etc.
+            yield return new WaitForSeconds(1f);
+
+            if (_heartCounter.HeartCount == 0)
+            {
+                // TODO: Show game over screen or similar.
+            }
+            else if (_heartCounter.HeartCount == _currentQuizData.QuizQuestions.Length)
+            {
+                // TODO: Show perfect score screen or similar.
+            }
+            else
+            {
+                // TODO: Show score screen or similar.
             }
         }
     }

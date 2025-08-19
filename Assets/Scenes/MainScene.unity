@@ -1897,7 +1897,7 @@ RectTransform:
   m_GameObject: {fileID: 1889677387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3632129740796388179}
@@ -1961,6 +1961,7 @@ MonoBehaviour:
   _quizManager: {fileID: 1252762472}
   _gameManager: {fileID: 8466257311400735079}
   _mainCanvasPresenter: {fileID: 5936374499462766053}
+  _openAIManager: {fileID: 0}
   _detectionData:
     detections: []
 --- !u!1 &1898805332
@@ -2375,7 +2376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &3902005362352677992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2791,7 +2792,7 @@ RectTransform:
   m_GameObject: {fileID: 3850248701911442941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 0.0025, y: 0.0025, z: 0.0025}
+  m_LocalScale: {x: 0.0018000001, y: 0.0018000001, z: 0.0018000001}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8778588829901686314}
@@ -2801,7 +2802,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 1080, y: 720}
+  m_SizeDelta: {x: 1600, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7639843244598413653
 GameObject:
@@ -2984,7 +2985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _position: {x: 0, y: 0, z: 0}
-  _size: {x: 1080, y: 720, z: 0.01}
+  _size: {x: 1600, y: 1200, z: 0.01}
 --- !u!224 &8778588829901686314
 RectTransform:
   m_ObjectHideFlags: 0
