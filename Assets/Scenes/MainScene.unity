@@ -1896,7 +1896,7 @@ RectTransform:
   m_GameObject: {fileID: 1889677387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1082905061}
@@ -1906,7 +1906,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 512, y: 256}
+  m_SizeDelta: {x: 1024, y: 960}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1889677389
 MonoBehaviour:
@@ -2023,63 +2023,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1532933339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1961460218
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.00404
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.86836
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.24997
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047676844597515174, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7847449403238870662, guid: abfaad578d05e4a09838223134c41c46, type: 3}
-      propertyPath: m_Name
-      value: WebCamTextureManagerPrefab
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: abfaad578d05e4a09838223134c41c46, type: 3}
 --- !u!1 &1983965007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2937,7 +2880,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 1280, y: 720}
+  m_SizeDelta: {x: 1080, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7639843244598413653
 GameObject:
@@ -2951,7 +2894,7 @@ GameObject:
   - component: {fileID: 9209140618886578224}
   - component: {fileID: 26098571083003332}
   m_Layer: 5
-  m_Name: Pnl_Quiz
+  m_Name: Pnl_SelectedObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3109,10 +3052,6 @@ PrefabInstance:
       value: --- Systems ---
       objectReference: {fileID: 0}
     - target: {fileID: 902552913431682369, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
-      propertyPath: _renderTexture
-      value: 
-      objectReference: {fileID: 8400000, guid: ec56b439f8a460f47b67bbe2b569efbf, type: 2}
-    - target: {fileID: 902552913431682369, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
       propertyPath: _btnConfirmView
       value: 
       objectReference: {fileID: 417392093}
@@ -3165,19 +3104,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
-      propertyPath: DebugJson
-      value: "{\r\n  \"QuizzedObjectName\": \"Flower Pot\",\r\n  \"QuizQuestions\":
-        [\r\n    {\r\n      \"Question\": \"What color is the large flower in the
-        middle of the pot?\",\r\n      \"Options\": [\"Red\", \"Yellow\", \"Blue\",
-        \"White\"],\r\n      \"Answer\": \"Yellow\"\r\n    },\r\n    {\r\n      \"Question\":
-        \"What type of container holds the flowers?\",\r\n      \"Options\": [\"Glass
-        jar\", \"Ceramic pot\", \"Plastic cup\", \"Wooden box\"],\r\n      \"Answer\":
-        \"Ceramic pot\"\r\n    },\r\n    {\r\n      \"Question\": \"What kind of
-        leaves are surrounding the flowers?\",\r\n      \"Options\": [\"Ivy leaves\",
-        \"Palm leaves\", \"Pine needles\", \"Cactus leaves\"],\r\n      \"Answer\":
-        \"Ivy leaves\"\r\n    }\r\n  ]\r\n}\r\n"
-      objectReference: {fileID: 0}
-    - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
       propertyPath: _txtQuestion
       value: 
       objectReference: {fileID: 544185495}
@@ -3186,17 +3112,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1360825240}
     - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
-      propertyPath: _openAIManager
-      value: 
-      objectReference: {fileID: 511663892}
-    - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
       propertyPath: _tfOptionsSpawnParent
       value: 
       objectReference: {fileID: 272503836}
-    - target: {fileID: 5735792855981016234, guid: 0323fd1510d07ab4180a6e08fb986b12, type: 3}
-      propertyPath: _btnAnswerOptionPrefab
-      value: 
-      objectReference: {fileID: 1726174554727410537, guid: 721810609c0fc1f4f98f516baaaee183, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3215,7 +3133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _position: {x: 0, y: 0, z: 0}
-  _size: {x: 1280, y: 720, z: 0.01}
+  _size: {x: 1080, y: 720, z: 0.01}
 --- !u!224 &8778588829901686314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3257,4 +3175,3 @@ SceneRoots:
   - {fileID: 34122098}
   - {fileID: 53601295}
   - {fileID: 8466257311400735078}
-  - {fileID: 1961460218}

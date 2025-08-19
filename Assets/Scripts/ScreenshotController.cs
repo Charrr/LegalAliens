@@ -27,64 +27,64 @@ namespace LegalAliens
         }
         private void Start()
         {
-            _btnConfirmView.onClick.AddListener(MakeCameraSnapshot);
+            _btnConfirmView.onClick.AddListener(ConfirmView);
         }
 
         private void OnDestroy()
         {
-            _btnConfirmView.onClick.RemoveListener(MakeCameraSnapshot);
+            _btnConfirmView.onClick.RemoveListener(ConfirmView);
         }
 
-        public Texture2D CaptureScreenshot()
-        {
-            // Save the original culling mask
-            int originalMask = _screenshotCamera.cullingMask;
+        //public Texture2D CaptureScreenshot()
+        //{
+        //    // Save the original culling mask
+        //    int originalMask = _screenshotCamera.cullingMask;
 
-            // Exclude the UI layer (layer 5)
-            _screenshotCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("UI"));
+        //    // Exclude the UI layer (layer 5)
+        //    _screenshotCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("UI"));
 
-            _screenshotCamera.targetTexture = _renderTexture;
+        //    _screenshotCamera.targetTexture = _renderTexture;
 
-            // Render the camera's view to the RenderTexture
-            RenderTexture.active = _renderTexture;
-            _screenshotCamera.Render();
+        //    // Render the camera's view to the RenderTexture
+        //    RenderTexture.active = _renderTexture;
+        //    _screenshotCamera.Render();
 
-            // Create a Texture2D to store the screenshot
-            Texture2D screenshot = new Texture2D(_renderTexture.width, _renderTexture.height, TextureFormat.RGB24, false);
-            screenshot.ReadPixels(new Rect(0, 0, _renderTexture.width, _renderTexture.height), 0, 0);
-            screenshot.Apply();
+        //    // Create a Texture2D to store the screenshot
+        //    Texture2D screenshot = new Texture2D(_renderTexture.width, _renderTexture.height, TextureFormat.RGB24, false);
+        //    screenshot.ReadPixels(new Rect(0, 0, _renderTexture.width, _renderTexture.height), 0, 0);
+        //    screenshot.Apply();
 
-            // Reset the camera's target texture and RenderTexture
-            _screenshotCamera.targetTexture = null;
-            RenderTexture.active = null;
+        //    // Reset the camera's target texture and RenderTexture
+        //    _screenshotCamera.targetTexture = null;
+        //    RenderTexture.active = null;
 
-            // Restore the original culling mask
-            _screenshotCamera.cullingMask = originalMask;
+        //    // Restore the original culling mask
+        //    _screenshotCamera.cullingMask = originalMask;
 
-            return screenshot;
-        }
+        //    return screenshot;
+        //}
 
-        [ContextMenu("Capture MR Frame")]
-        public void Capture() => StartCoroutine(CaptureCo());
+        //[ContextMenu("Capture MR Frame")]
+        //public void Capture() => StartCoroutine(CaptureCo());
 
-        IEnumerator CaptureCo()
-        {
-            yield return new WaitForEndOfFrame();
+        //IEnumerator CaptureCo()
+        //{
+        //    yield return new WaitForEndOfFrame();
 
-            int w = Screen.width, h = Screen.height;
-            var tex = new Texture2D(w, h, TextureFormat.RGB24, false);
-            tex.ReadPixels(new Rect(0, 0, w, h), 0, 0);
-            tex.Apply();
-            _screenshotPresenter.SetScreenshot(tex);
+        //    int w = Screen.width, h = Screen.height;
+        //    var tex = new Texture2D(w, h, TextureFormat.RGB24, false);
+        //    tex.ReadPixels(new Rect(0, 0, w, h), 0, 0);
+        //    tex.Apply();
+        //    _screenshotPresenter.SetScreenshot(tex);
 
-            Destroy(tex);
-        }
+        //    Destroy(tex);
+        //}
 
-        public void MakeCameraSnapshot()
+        public Texture2D MakeCameraSnapshot()
         {
             var webCamTexture = _webCamTextureManager.WebCamTexture;
             if (webCamTexture == null || !webCamTexture.isPlaying)
-                return;
+                return null;
 
             var cameraSnapshot = new Texture2D(webCamTexture.width, webCamTexture.height, TextureFormat.RGBA32, false);
             
@@ -94,13 +94,14 @@ namespace LegalAliens
             cameraSnapshot.SetPixels32(m_pixelsBuffer);
             cameraSnapshot.Apply();
 
-            _screenshotPresenter.SetScreenshot(cameraSnapshot);
+            return cameraSnapshot;
         }
 
         private void ConfirmView()
         {
-            Texture2D screenshot = CaptureScreenshot();
-            _screenshotPresenter.SetScreenshot(screenshot);
+            Texture2D screenshot = MakeCameraSnapshot();
+            Texture2D resized = Utility.ResizeTexture(screenshot, 1024);
+            _screenshotPresenter.SetScreenshot(resized);
         }
     } 
 }

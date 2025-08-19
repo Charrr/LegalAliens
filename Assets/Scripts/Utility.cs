@@ -27,4 +27,29 @@ public static class Utility
         RenderTexture.ReleaseTemporary(rt);
         return copy;
     }
+
+    public static Texture2D ResizeTexture(Texture2D source, int targetWidth)
+    {
+        int originalWidth = source.width;
+        int originalHeight = source.height;
+        float aspectRatio = (float)originalHeight / originalWidth;
+        int targetHeight = Mathf.RoundToInt(targetWidth * aspectRatio);
+
+        // Create a new texture with the target dimensions
+        Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, false);
+
+        // Scale pixels using bilinear filtering
+        for (int y = 0; y < targetHeight; y++)
+        {
+            for (int x = 0; x < targetWidth; x++)
+            {
+                float u = (float)x / (float)targetWidth;
+                float v = (float)y / (float)targetHeight;
+                Color color = source.GetPixelBilinear(u, v);
+                result.SetPixel(x, y, color);
+            }
+        }
+        result.Apply();
+        return result;
+    }
 }
