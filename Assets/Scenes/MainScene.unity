@@ -1960,6 +1960,7 @@ MonoBehaviour:
   _dwaniAIManager: {fileID: 797950392}
   _quizManager: {fileID: 1252762472}
   _gameManager: {fileID: 8466257311400735079}
+  _mainCanvasPresenter: {fileID: 5936374499462766053}
   _detectionData:
     detections: []
 --- !u!1 &1898805332
@@ -2770,6 +2771,17 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 5954255527269316839, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
   m_PrefabInstance: {fileID: 5936374499462766051}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5936374499462766053 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8980688847005443995, guid: 9067bf7fb445f35428f8f494c9e03f8a, type: 3}
+  m_PrefabInstance: {fileID: 5936374499462766051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e593ba4ab8d31194da76928645775b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LegalAliens.MainCanvasPresenter
 --- !u!224 &6001413612598866704
 RectTransform:
   m_ObjectHideFlags: 0

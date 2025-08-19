@@ -15,6 +15,7 @@ namespace LegalAliens
         [SerializeField] private DwaniAIManager _dwaniAIManager;
         [SerializeField] private QuizManager _quizManager;
         [SerializeField] private GameManager _gameManager;
+        [SerializeField] private MainCanvasPresenter _mainCanvasPresenter;
 
         [Header("Response Data")]
         [SerializeField] private DwaniAIResponse.DetectionData _detectionData;
@@ -32,6 +33,10 @@ namespace LegalAliens
             if (!_gameManager)
             {
                 _gameManager = FindAnyObjectByType<GameManager>();
+            }
+            if (!_mainCanvasPresenter)
+            {
+                _mainCanvasPresenter = FindAnyObjectByType<MainCanvasPresenter>();
             }
         }
 
@@ -73,6 +78,7 @@ namespace LegalAliens
                 {
                     var croppedTexture = Utility.CropByBoundingBox(_imgScreenshot.texture as Texture2D, det.box[0], det.box[1], det.box[2], det.box[3]);
                     _gameManager.CurrentState = GameState.InQuiz;
+                    _mainCanvasPresenter.SetSelectedObjectImage(croppedTexture);
                     //_quizManager.SetCurrentQuizImage(croppedTexture);
                     Debug.Log($"Selected: {det.label} with confidence {det.confidence * 100:F2}%");
                     // Handle selection logic here, e.g., highlight the object, show more info, etc.
