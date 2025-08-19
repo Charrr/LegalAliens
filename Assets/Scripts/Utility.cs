@@ -35,6 +35,8 @@ public static class Utility
 
     public static Texture2D ResizeTexture(Texture2D source, int targetWidth)
     {
+        source = EnsureReadable(source);
+
         int originalWidth = source.width;
         int originalHeight = source.height;
         float aspectRatio = (float)originalHeight / originalWidth;

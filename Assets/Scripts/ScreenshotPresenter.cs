@@ -100,7 +100,7 @@ namespace LegalAliens
 
         public void ConfirmSelectObject(DwaniAIResponse.Detection detection)
         {
-            Texture2D texture = _screenshotController.CurrentSnapshotRisized;
+            Texture2D texture = _screenshotController.CurrentSnapshotResized;
             var croppedTexture = Utility.CropByBoundingBox(texture, detection.box[0], detection.box[1], detection.box[2], detection.box[3]);
             _gameManager.CurrentState = GameState.InQuiz;
             _mainCanvasPresenter.SetSelectedObjectImage(croppedTexture);

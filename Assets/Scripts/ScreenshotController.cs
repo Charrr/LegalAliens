@@ -21,7 +21,7 @@ namespace LegalAliens
         [SerializeField] private Texture2D _debugTexture;
 
         private Texture2D _currentSnapshotResized;
-        public Texture2D CurrentSnapshotRisized => _currentSnapshotResized;
+        public Texture2D CurrentSnapshotResized => _currentSnapshotResized;
 
         private void Awake()
         {
@@ -109,17 +109,12 @@ namespace LegalAliens
 
         private void ConfirmView()
         {
-            if (Application.isEditor)
-            {
-                _screenshotPresenter.SetScreenshot(_debugTexture);
-            }
-            else
-            {
-                Texture2D screenshot = MakeCameraSnapshot();
-                Texture2D resized = Utility.ResizeTexture(screenshot, 1024);
-                _currentSnapshotResized = resized;
-                _screenshotPresenter.SetScreenshot(resized);
-            }
+            Texture2D textureToSet = Application.isEditor ? _debugTexture : MakeCameraSnapshot();
+            Debug.Log($"Screenshot taken: {textureToSet.width}x{textureToSet.height}");
+            Texture2D resized = Utility.ResizeTexture(textureToSet, 1024);
+            Debug.Log($"Resized screenshot: {resized.width}x{resized.height}");
+            _currentSnapshotResized = resized;
+            _screenshotPresenter.SetScreenshot(resized);
             _gameManager.CurrentState = GameState.SelectObject;
         }
     } 
